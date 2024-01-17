@@ -1,3 +1,4 @@
+import 'package:desde_cero/components/cards/drawer_principal.dart';
 import 'package:desde_cero/pages/alertDialogs/block_suscripcion/bloc_suscripcion.dart';
 import 'package:desde_cero/pages/goyetera/la_otra_goyetera.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +36,7 @@ class _InicioState extends State<Inicio> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: cuerpo(context),
+      drawer: DrawerPrincipal(context),
     );
   }
 }
