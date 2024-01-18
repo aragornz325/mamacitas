@@ -40,7 +40,10 @@ class _InicioState extends State<Inicio> {
 }
 
 Widget cuerpo(context) {
-  return Container(
+  return AnimatedContainer(
+    duration: const Duration(
+      seconds: 1,
+    ),
     decoration: const BoxDecoration(
       image: DecorationImage(
           image: NetworkImage(
@@ -112,7 +115,10 @@ Widget boton(context) {
 }
 
 Widget campoUsuario() {
-  return Container(
+  return AnimatedContainer(
+    duration: Duration(
+      seconds: 1,
+    ),
     padding: const EdgeInsets.symmetric(
       horizontal: 20,
       vertical: 3,
@@ -128,7 +134,10 @@ Widget campoUsuario() {
 }
 
 Widget campoContrasena() {
-  return Container(
+  return AnimatedContainer(
+    duration: Duration(
+      seconds: 1,
+    ),
     padding: const EdgeInsets.symmetric(
       horizontal: 20,
       vertical: 3,

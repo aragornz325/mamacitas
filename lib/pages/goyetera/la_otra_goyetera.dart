@@ -1,4 +1,5 @@
-import 'package:desde_cero/components/cards/drawer_principal.dart';
+import 'package:desde_cero/components/BottonNavigationBar/boton_navigator_bar.dart';
+import 'package:desde_cero/components/drawer/drawer_principal.dart';
 import 'package:desde_cero/pages/alertDialogs/alert_dialogs.dart';
 import 'package:desde_cero/pages/consumirApi/consumir_api.dart';
 import 'package:desde_cero/pages/consumirApi/consumir_con_http.dart';
@@ -11,6 +12,7 @@ class PaginaGoyetera extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: drawerPrincipal(context),
+      bottomNavigationBar: bottonNavigationBar(context),
       appBar: AppBar(
         title: const Text(
           'menu de ejemplos',
