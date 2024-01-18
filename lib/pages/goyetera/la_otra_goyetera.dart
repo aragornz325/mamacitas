@@ -1,3 +1,4 @@
+import 'package:desde_cero/components/cards/drawer_principal.dart';
 import 'package:desde_cero/pages/alertDialogs/alert_dialogs.dart';
 import 'package:desde_cero/pages/consumirApi/consumir_api.dart';
 import 'package:desde_cero/pages/consumirApi/consumir_con_http.dart';
@@ -9,6 +10,7 @@ class PaginaGoyetera extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: drawerPrincipal(context),
       appBar: AppBar(
         title: const Text(
           'menu de ejemplos',
@@ -31,30 +33,58 @@ class PaginaGoyetera extends StatelessWidget {
         ),
         child: Column(
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                botonGeneral(
-                  context,
-                  titulo: 'Alert Dialogs',
-                  paginaDestino: () => const AlertDialogs(),
-                ),
-                botonGeneral(
-                  context,
-                  titulo: 'las mamaCITAS',
-                  paginaDestino: () => const ConsumirApi(),
-                ),
-              ],
+            Expanded(
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      botonGeneral(
+                        context,
+                        titulo: 'Alert Dialogs',
+                        paginaDestino: () => const AlertDialogs(),
+                      ),
+                      botonGeneral(
+                        context,
+                        titulo: 'las mamaCITAS',
+                        paginaDestino: () => const ConsumirApi(),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      botonGeneral(
+                        context,
+                        titulo: "HttpCitas",
+                        paginaDestino: () => const ConsumirConHttp(),
+                      )
+                    ],
+                  ),
+                ],
+              ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                botonGeneral(
-                  context,
-                  titulo: "HttpCitas",
-                  paginaDestino: () => const ConsumirConHttp(),
-                )
-              ],
+            ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(
+                  Colors.redAccent,
+                ),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text(
+                'salir',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                ),
+              ),
             ),
           ],
         ),

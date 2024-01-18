@@ -32,78 +32,81 @@ class AlertDialogs extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Center(
-              child: Column(
-                mainAxisAlignment:
-                    MainAxisAlignment.center, // Centrar contenido en Row
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(
-                              10.0,
+              child: Center(
+                heightFactor: 5.0,
+                child: Column(
+                  mainAxisAlignment:
+                      MainAxisAlignment.center, // Centrar contenido en Row
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                10.0,
+                              ),
+                            ),
+                          ),
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                            const Color.fromARGB(
+                              255,
+                              236,
+                              16,
+                              0,
                             ),
                           ),
                         ),
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                          const Color.fromARGB(
-                            255,
-                            236,
-                            16,
-                            0,
+                        onPressed: () {
+                          _mostrarAlerta(
+                            context,
+                            () {
+                              context.read<BlocSuscripcionBloc>().add(
+                                    const BlocSuscripcionEventSuscribirse(
+                                      flagSuscripcion: true,
+                                    ),
+                                  );
+                              Navigator.pop(context);
+                            },
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 10.0,
+                          ),
+                          child: BlocBuilder<BlocSuscripcionBloc,
+                              BlocSuscripcionState>(
+                            builder: (context, state) {
+                              return Text(
+                                state.flagSuscripcion
+                                    ? 'suscripto a mamaCITAS'
+                                    : 'Suscribirse a mamaCITAS',
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              );
+                            },
                           ),
                         ),
                       ),
-                      onPressed: () {
-                        _mostrarAlerta(
-                          context,
-                          () {
-                            context.read<BlocSuscripcionBloc>().add(
-                                  const BlocSuscripcionEventSuscribirse(
-                                    flagSuscripcion: true,
-                                  ),
-                                );
-                            Navigator.pop(context);
-                          },
+                    ),
+                    BlocBuilder<BlocSuscripcionBloc, BlocSuscripcionState>(
+                      builder: (context, state) {
+                        return Text(
+                          state.flagSuscripcion ? 'suscripto' : 'no suscripto',
+                          style: const TextStyle(
+                            fontSize: 24.0,
+                            color: Colors.white,
+                          ),
                         );
                       },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 10.0,
-                        ),
-                        child: BlocBuilder<BlocSuscripcionBloc,
-                            BlocSuscripcionState>(
-                          builder: (context, state) {
-                            return Text(
-                              state.flagSuscripcion
-                                  ? 'suscripto a mamaCITAS'
-                                  : 'Suscribirse a mamaCITAS',
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            );
-                          },
-                        ),
-                      ),
                     ),
-                  ),
-                  BlocBuilder<BlocSuscripcionBloc, BlocSuscripcionState>(
-                    builder: (context, state) {
-                      return Text(
-                        state.flagSuscripcion ? 'suscripto' : 'no suscripto',
-                        style: const TextStyle(
-                          fontSize: 24.0,
-                          color: Colors.white,
-                        ),
-                      );
-                    },
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             const Spacer(), // Empuja el botón hacia abajo
